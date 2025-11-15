@@ -7,7 +7,7 @@ export default function Home() {
       <div className="grid place-items-center">
         <span>Hello</span>
         <Button asChild>
-          <Link href={'https://palatial-lemon-25-staging.authkit.app/sign-up'}>
+          <Link href="/api/auth/login">
             Login
           </Link>
         </Button>
