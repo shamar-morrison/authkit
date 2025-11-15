@@ -1,6 +1,6 @@
-import { Button } from '@/components/ui/button'
-import Link from 'next/link'
 import { cookies } from 'next/headers'
+import { LoginButton } from '@/components/LoginButton'
+import { LogoutButton } from '@/components/LogoutButton'
 
 interface UserData {
   id: string
@@ -36,11 +36,7 @@ export default async function Home() {
                 <p className="text-sm">{user.email}</p>
               </div>
             </div>
-            <Button asChild variant="outline">
-              <Link href="/api/auth/logout">
-                Logout
-              </Link>
-            </Button>
+            <LogoutButton />
           </>
         ) : (
           <>
@@ -48,11 +44,7 @@ export default async function Home() {
               <h1 className="text-3xl font-bold">Welcome to AuthKit</h1>
               <p className="text-muted-foreground">Sign in to get started</p>
             </div>
-            <Button asChild>
-              <Link href="/api/auth/login">
-                Login
-              </Link>
-            </Button>
+            <LoginButton />
           </>
         )}
       </div>
