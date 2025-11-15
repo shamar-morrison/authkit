@@ -23,8 +23,26 @@ export async function GET(request: NextRequest) {
     // Use the information in `user` for further business logic.
     console.log(user)
 
-    // Redirect the user to the homepage
-    return NextResponse.redirect(new URL('/', request.url))
+    // Store user session in cookie
+    const userData = {
+      id: user.id,
+      email: user.email,
+      firstName: user.firstName,
+      lastName: user.lastName,
+    }
+
+    const response = NextResponse.redirect(new URL('/', request.url))
+
+    // Set session cookie (expires in 7 days)
+    response.cookies.set('session', JSON.stringify(userData), {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 60 * 60 * 24 * 7, // 7 days
+      path: '/',
+    })
+
+    return response
   } catch (error) {
     console.error('Authentication error:', error)
     return new NextResponse('Authentication failed', { status: 500 })
