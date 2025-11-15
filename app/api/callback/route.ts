@@ -31,7 +31,10 @@ export async function GET(request: NextRequest) {
       lastName: user.lastName,
     }
 
-    const response = NextResponse.redirect(new URL('/', request.url))
+    const url = new URL(request.url)
+    url.pathname = '/'
+    url.search = '' // Clear all query parameters
+    const response = NextResponse.redirect(url)
 
     // Set session cookie (expires in 7 days)
     response.cookies.set('session', JSON.stringify(userData), {
