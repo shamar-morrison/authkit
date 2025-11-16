@@ -10,7 +10,7 @@ export function UrlCleanup() {
       if (url.searchParams.has('code')) {
         // Remove the code parameter and update the URL without reloading
         url.searchParams.delete('code')
-        window.history.replaceState({}, '', url.pathname + url.search)
+        window.history.replaceState({}, '', url.pathname + url.search + url.hash)
       }
     }
   }, [])
