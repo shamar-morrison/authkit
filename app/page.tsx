@@ -1,6 +1,7 @@
 import { cookies } from 'next/headers'
 import { LoginButton } from '@/components/LoginButton'
 import { LogoutButton } from '@/components/LogoutButton'
+import { UrlCleanup } from '@/components/UrlCleanup'
 
 interface UserData {
   id: string
@@ -24,6 +25,7 @@ export default async function Home() {
 
   return (
     <main className="flex items-center justify-center min-h-screen">
+      <UrlCleanup />
       <div className="text-center space-y-6 p-8">
         {user ? (
           <>
